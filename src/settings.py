@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 
-from src.logger.log import lg
+from logger.log import lg
 
 lg.info(f"loaded env variables: {load_dotenv(find_dotenv())}")
 
