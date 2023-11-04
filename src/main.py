@@ -1,7 +1,7 @@
-# from settings import *
-from logger import log
+import logging
 
+from settings import *
 from utils.datetime_helpers import get_day
 
-# lg = logging.getLogger(__name__)
-log.lg.info(get_day())
+lg = logging.getLogger(__name__)
+lg.info(get_day())

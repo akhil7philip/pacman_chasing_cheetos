@@ -1,18 +1,27 @@
+import os
 import logging
+from sqlalchemy import create_engine
+
+lg = logging.getLogger(__name__)
 
 
-def get_sqlalchemy_engine(db, host, user, password, database, port):
+
+conn_mysql = create_engine(os.getenv(''))
+
+def get_cursor(db, host, user, password, database, port):
     print(f"db, host, user, password, database, port: {db, host, user, password, database, port}")
     if db == 'mysql':
-        return create_engine("mysql+pymysql://{user}:{password}@{host}:{port}/{database}".format(**conn_params[db]))
+        conn = mysql.connect(host=host, user=user, passwd=password, database=database, port=port)
+        return conn.cursor(dictionary=True)
     else:
-        return create_engine("postgresql://{user}:{password}@{host}:{port}/{database}".format(**conn_params[db]))
-
+        conn = psycopg2.connect(host=host, user=user, password=password, database=database, port=port)    
+        return conn.cursor()
+    
 # @open_ssh_tunnel
 def run_query(query, db='mysql'):
-    logger.info('connecting...')
+    lg.info('connecting...')
     curr = get_cursor(db, **conn_params[db])
-    logger.info('connected')
+    lg.info('connected')
     curr.execute(query)
     result = curr.fetchall()
     curr.close()
