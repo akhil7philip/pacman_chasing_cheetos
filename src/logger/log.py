@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from src.utils import datetime_helpers
+from utils import datetime_helpers
 
 base_path = Path(__file__).resolve().parent
 log_base_path = f'{base_path}/logs/{datetime_helpers.today}'
