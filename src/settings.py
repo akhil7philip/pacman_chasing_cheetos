@@ -1,11 +1,17 @@
 import os
 from dotenv import load_dotenv, find_dotenv
+from pya3 import *
 
 from logger.log import lg
 
 lg.info(f"loaded env variables: {load_dotenv(find_dotenv())}")
 
-API_KEY = os.getenv('API_KEY')
+FMCLOUD_API_KEY = os.getenv('FMCLOUD_API_KEY')
+
+broker_client = Aliceblue(
+	user_id=str(os.environ.get('ALICE_BLUE_USERNAME')),
+	api_key=os.environ.get('ALICE_BLUE_API_KEY'))
+broker_client.get_session_id() # Get Session ID
 
 # Database configs
 DB_ENV_PROD = int(os.getenv('DB_ENV_PROD'))
