@@ -5,11 +5,11 @@ from icecream import ic
 from utils import datetime_helpers
 
 base_path = Path(__file__).resolve().parent
-log_base_path = f'{base_path}/logs_{datetime_helpers.today}'
+log_base_path = f'{base_path}/logs/{datetime_helpers.today}'
 
 
 if not os.path.isdir(log_base_path):
-	os.mkdir(log_base_path)
+	os.makedirs(log_base_path)
 
 LOGGING = {
 	'version': 1,

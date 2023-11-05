@@ -16,11 +16,11 @@ def get_session():
 
 def http_requests(url, method='GET', **kwargs):
     with get_session() as session:
-        lg.info(f"Attempt hitting endpoint {url}")
+        lg.info(f"Attempt hitting endpoint {url.split('?')[0]}")
         response = session.request(method, url, **kwargs)
         if response.status_code == requests.codes.ok:
-            lg.info(f"received successful response from endpoint {url}")
+            lg.info(f"received successful response from endpoint {url.split('?')[0]}")
             return response.json()
         else:
             logging.error(
-                f"Failed to RUN request: {url} \n Reason: {response.reason} \n Error code: {response.status_code}")
+                f"Failed to RUN request: {url.split('?')[0]} \n Reason: {response.reason} \n Error code: {response.status_code}")
